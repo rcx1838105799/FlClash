@@ -158,6 +158,20 @@ class ApplicationState extends ConsumerState<Application> {
             ...GlobalMaterialLocalizations.delegates,
           ],
           builder: (context, child) {
+            child = Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          'assets/bg.png',
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => const SizedBox(),
+        ),
+        Opacity(
+          opacity: 0.88,
+          child: child ?? const SizedBox(),
+        ),
+      ],
+    );
             // The bridge's legacy Theme swaps in its own default IconTheme color,
             // which material_ui IconButton.filled reads as custom and loses onPrimary.
             // ignore: deprecated_member_use
